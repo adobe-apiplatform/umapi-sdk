@@ -9,7 +9,7 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
-    parser = argparse.ArgumentParser(description='UNC User Converter')
+    parser = argparse.ArgumentParser(description='Username Update Tool')
     parser.add_argument('-c', '--config',
                         help='filename of config file',
                         metavar='filename', dest='config_filename')
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         config = yaml.load(f)
     conn = umapi_client.Connection(org_id=config["org_id"],
                                    auth_dict=config,
-                                   test_mode=True,
+                                   test_mode=args.test_mode,
                                    logger=logger)
 
     cols = ['Identity Type', 'Username', 'Domain', 'Email', 'First Name', 'Last Name', 'Country Code',
@@ -46,6 +46,6 @@ if __name__ == '__main__':
 
     for email, action in actions.items():
         if not action.execution_errors():
-            logger.debug("%s - created successfully" % email)
+            logger.debug("%s - updated successfully" % email)
         else:
             logger.debug("%s - ERROR - %s" % (email, action.execution_errors()))
