@@ -1,5 +1,5 @@
-org_id: [ORG ID]
-tech_acct_id: [TECH ACCT ID]
-api_key: [API KEY]
-client_secret: [CLIENT SECRET]
-private_key_file: [PATH TO PRIVATE KEY]
+org_id: 'ORG_ID'
+tech_acct_id: 'TECH_ACCT_ID'
+api_key: 'API_KEY'
+client_secret: 'CLIENT_SECRET'
+private_key_file: 'PATH_TO_PRIVATE_KEY'
