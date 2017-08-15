@@ -1,0 +1,4 @@
+Identity Type,Username,Domain,Email,First Name,Last Name,Country Code,Product Configurations,Admin Roles,Product Configurations Administered
+Federated ID,dbrotsky-test-1,ad.unc.edu,dbrotsky-test-1@ad.unc.edu,Dan Test 1,Brotsky,US,Instructional Faculty/Staff,,
+Federated ID,dbrotsky-test-2,ad.unc.edu,dbrotsky-test-2@ad.unc.edu,Dan Test 2,Brotsky,US,Student,,
+Federated ID,918272819,ad.unc.edu,dbrotsky-test-3@ad.unc.edu,Dan Test 3,Brotsky,US,Departmental Faculty/Staff,,

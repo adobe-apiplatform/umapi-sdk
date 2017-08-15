@@ -40,14 +40,15 @@ if __name__ == '__main__':
 
     actions = {}
     for user_rec in CSVAdapter.read_csv_rows(args.users_filename, recognized_column_names=cols):
-        username, email = user_rec['Username'], user_rec['Email']
+        username, email = user_rec.get('Username'), user_rec.get('Email')
+        if not username or not email:
+            logger.warning("Skipping input record with missing Username and/or Email: %s" % user_rec)
+            continue
+        user = UserAction(id_type=IdentityTypes.federatedID, email=email)
         if args.from_email:
-            user = UserAction(id_type=IdentityTypes.federatedID, email=email)
             user.update(username=username)
             actions[email] = user
         else:
-            domain = email[email.index('@') + 1:]
-            user = UserAction(id_type=IdentityTypes.federatedID, username=username, domain=domain)
             user.update(username=email)
             actions[username] = user
         conn.execute_single(user)
