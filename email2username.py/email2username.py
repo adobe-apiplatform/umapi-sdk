@@ -9,23 +9,19 @@ if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
-    parser = argparse.ArgumentParser(description='Username Update Tool')
-    parser.add_argument('-c', '--config',
-                        help='filename of config file',
-                        metavar='filename', dest='config_filename')
-    parser.add_argument('-u', '--users',
-                        help='filename of user file',
-                        metavar='filename', dest='users_filename')
+    parser = argparse.ArgumentParser(description='Federated ID Convert from Email to Username Tool')
+    parser.add_argument('-c', '--config', required=True, type=argparse.FileType('r'),
+                        help='path to config file containing integration credentials',
+                        metavar='config.yml', dest='config_filename')
+    parser.add_argument('-u', '--users', required=True, type=argparse.FileType('r'),
+                        help='path to csv spreadsheet with columns Username, Email',
+                        metavar='users.csv', dest='users_filename')
     parser.add_argument('-t', '--test-mode',
-                        help='run updates in test mode',
-                        dest='test_mode',
-                        action='store_true',
-                        default=False)
+                        help='run updates in test mode (no changes made)',
+                        dest='test_mode', action='store_true', default=False)
     parser.add_argument('-r', '--reverse',
-                        help='reverse conversion (go from username to email, rather than email to username)',
-                        dest='from_email',
-                        action='store_false',
-                        default=True)
+                        help='reverse conversion (set username to email)',
+                        dest='from_email', action='store_false', default=True)
 
     args = parser.parse_args()
 
